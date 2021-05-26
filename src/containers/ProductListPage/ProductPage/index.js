@@ -23,7 +23,7 @@ const ProductPage = (props) => {
   return (
     <div style={{ margin: "0px 10px" }}>
       <h3>{page.title}</h3>
-      <Carousel renderThumbs={() => {}}>
+      <Carousel infiniteLoop autoPlay renderThumbs={() => {}}>
         {page.banners &&
           page.banners.map((banner, index) => {
             return (
