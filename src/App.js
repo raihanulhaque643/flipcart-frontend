@@ -5,6 +5,7 @@ import ProductListPage from './containers/ProductListPage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isUerLoggedIn } from './actions';
+import ProductDetailsPage from './containers/ProductDetailsPage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
       </Router>
