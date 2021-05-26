@@ -9,6 +9,9 @@ const initState = {
     under20k: [],
     under30k: [],
   },
+  pageRequest: false,
+  page: {},
+  error: null,
 };
 
 export const productReducer = (state = initState, action) => {
@@ -18,10 +21,32 @@ export const productReducer = (state = initState, action) => {
         ...state,
         products: action.payload.products,
         productsByPrice: {
-          ...action.payload.productsByPrice
+          ...action.payload.productsByPrice,
         },
-    };
-    break;
+      };
+      break;
+    case productConstants.GET_PRODUCT_PAGE_REQUEST:
+      state = {
+        ...state,
+        pageRequest: true,
+      };
+      break;
+    case productConstants.GET_PRODUCT_PAGE_SUCCESS:
+      state = {
+        ...state,
+        page: action.payload.page,
+        pageRequest: false,
+      };
+      break;
+    case productConstants.GET_PRODUCT_PAGE_FAILURE:
+      state = {
+        ...state,
+        pageRequest: true,
+        error: action.payload.error,
+      };
+      break;
+    default:
+      break;
   }
 
   return state;
