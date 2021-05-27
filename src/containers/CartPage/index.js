@@ -1,34 +1,58 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../actions";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
+import CartItem from "./CartItem";
 import "./style.css";
 
 const CartPage = (props) => {
+
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
-  const cartItems = cart.cartItems;
+  // const cartItems = cart.cartItems;
+  const [cartItems, setCartItems] = useState(cart.cartItems);
+
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+
+  const onQuantityIncrement = (_id, qty) => {
+    // console.log({_id, qty})
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({_id, name, price, img}, 1));
+  }
+
+  const onQuantityDecrement = (_id, qty) => {
+    const { name, price, img } = cartItems[_id];
+    dispatch(addToCart({_id, name, price, img}, -1));
+  }
 
   return (
     <Layout>
-      <div className="cartContainer">
-        <Card headerLeft={`My Cart`} headerRight={<div>Deliver to</div>}>
+      <div className="cartContainer" style={{
+        alignItems: 'flex-start'
+      }}>
+        <Card 
+        headerLeft={`My Cart`} 
+        headerRight={<div>Deliver to</div>}
+        >
           {Object.keys(cartItems).map((key, index) => {
-            return <div key={index} className="flexRow">
-              <div className="cartProductContainer">
-                <img src="" alt="" />
-              </div>
-              <div className="cartItemDetails">{cartItems[key].name} - qty - {cartItems[key].qty}</div>
-              <div>Delivery in 3 - 5 days</div>
-            </div>;
+            return <CartItem 
+            key={index} 
+            cartItem={cartItems[key]} 
+            onQuantityInc={onQuantityIncrement}
+            onQuantityDec={onQuantityDecrement}
+            />;
           })}
         </Card>
         <Card
+        headerLeft="Price"
           style={{
             width: "500px",
           }}
-        >
-          Price
-        </Card>
+        />
       </div>
     </Layout>
   );

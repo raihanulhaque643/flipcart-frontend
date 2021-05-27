@@ -45,7 +45,7 @@ const ProductPage = (props) => {
         {page.products &&
           page.products.map((product, index) => {
             return (
-              <Card key={index}
+              <div key={index}
                 style=
                 {{
                   width: "400px",
@@ -61,7 +61,7 @@ const ProductPage = (props) => {
                   src={product.img}
                   alt=""
                 />
-              </Card>
+              </div>
             );
           })}
       </div>
