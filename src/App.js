@@ -21,8 +21,9 @@ function App() {
   }, [auth.autenticate]);
 
   useEffect(() => {
+    console.log('App.js - updateCart')
     dispatch(updateCart())
-  }, [])
+  }, [auth.autenticate])
 
   return (
     <div className="App">
