@@ -47,7 +47,7 @@ const Header = (props) => {
           { label: "My Profile", href: "", icon: null },
           { label: "SuperCoin Zone", href: "", icon: null },
           { label: "Flipcart Plus Zone", href: "", icon: null },
-          { label: "Orders", href: "", icon: null },
+          { label: "Orders", href: "/account/orders", icon: null },
           { label: "Wishlist", href: "", icon: null },
           { label: "My Chats", href: "", icon: null },
           { label: "Coupons", href: "", icon: null },
@@ -71,7 +71,14 @@ const Header = (props) => {
         menus={[
           { label: "My Profile", href: "", icon: null },
           { label: "Flipkart Plus Zone", href: "", icon: null },
-          { label: "Orders", href: "", icon: null },
+          {
+            label: "Orders",
+            href: "/account/orders",
+            icon: null,
+            onClick: () => {
+              !auth.authenticate && setLoginModal(true);
+            },
+          },
           { label: "Wishlist", href: "", icon: null },
           { label: "Rewards", href: "", icon: null },
           { label: "Gift Cards", href: "", icon: null },
@@ -143,7 +150,7 @@ const Header = (props) => {
         <div className="logo">
           <a href="">
             <Link to="/">
-            <img src={flipkartLogo} className="logoimage" alt="" />
+              <img src={flipkartLogo} className="logoimage" alt="" />
             </Link>
           </a>
           <a style={{ marginTop: "-10px" }}>
@@ -189,11 +196,11 @@ const Header = (props) => {
             ]}
           />
           <div>
-            <Link to="/cart">
-            <div className="cart">
-              <IoIosCart />
-              <span style={{ margin: "0 10px" }}>Cart</span>
-            </div>
+            <Link to="/cart" style={{ textDecoration: "none" }}>
+              <div className="cart">
+                <IoIosCart />
+                <span style={{ margin: "0 10px" }}>Cart</span>
+              </div>
             </Link>
           </div>
         </div>

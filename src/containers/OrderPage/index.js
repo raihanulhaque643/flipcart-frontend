@@ -48,6 +48,7 @@ const OrderPage = (props) => {
                   <img
                     className="orderImg"
                     src={generatePublicUrl(item.productId.productPictures[0].img)}
+                    alt=""
                   />
                 </div>
                 <div className="orderRow">
