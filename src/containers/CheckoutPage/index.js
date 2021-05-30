@@ -73,7 +73,7 @@ const Address = ({
             </div>
             {adr.selected && (
               <MaterialButton
-                title="DELIVERY HERE"
+                title="DELIVER HERE"
                 onClick={() => confirmDeliveryAddress(adr)}
                 style={{
                   width: "200px",
@@ -190,6 +190,16 @@ const CheckoutPage = (props) => {
       props.history.push(`/order_details/${user.placedOrderId}`);
     }
   }, [user.placedOrderId]);
+
+  if(confirmOrder){
+    return(
+      <Layout>
+        <Card>
+          <div className="">Thank you!</div>
+        </Card>
+      </Layout>
+    )
+  }
 
   return (
     <Layout>

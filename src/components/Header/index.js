@@ -11,6 +11,7 @@ import {
 } from "../MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout } from "../../actions/auth.actions";
+import { Link } from "react-router-dom";
 
 /**
  * @author
@@ -94,7 +95,7 @@ const Header = (props) => {
               <h2>Login</h2>
               <p>Get access to your Orders, Wishlist and Recommendations</p>
             </div>
-            <div className="loginInputContainer">
+            <div className="rightspace">
               <MaterialInput
                 type="text"
                 label="Enter Email/Enter Mobile Number"
@@ -141,7 +142,9 @@ const Header = (props) => {
       <div className="subHeader">
         <div className="logo">
           <a href="">
+            <Link to="/">
             <img src={flipkartLogo} className="logoimage" alt="" />
+            </Link>
           </a>
           <a style={{ marginTop: "-10px" }}>
             <span className="exploreText">Explore</span>
@@ -186,10 +189,12 @@ const Header = (props) => {
             ]}
           />
           <div>
-            <a className="cart">
+            <Link to="/cart">
+            <div className="cart">
               <IoIosCart />
               <span style={{ margin: "0 10px" }}>Cart</span>
-            </a>
+            </div>
+            </Link>
           </div>
         </div>
       </div>

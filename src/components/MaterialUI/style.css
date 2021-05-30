@@ -138,3 +138,7 @@
     background-color: #f0f0f0;
     cursor: pointer;
   }
+
+  .rightspace {
+    margin: 20px;
+  }
